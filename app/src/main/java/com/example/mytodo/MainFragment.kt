@@ -25,7 +25,7 @@ class MainFragment: Fragment(R.layout.main_fragment) {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.button.setOnClickListener {
+        binding.fav.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_createToDoFragment)
         }
 
