@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class ToDoRepositoryModule {
 
-    @Singleton
     @Binds
-    abstract fun bindToDoRepository(impl: ToDoRepositoryImpl): ToDoRepository
+    @Singleton
+    abstract fun ToDoRepositoryImpl.bindToDoRepository(): ToDoRepository
 }
