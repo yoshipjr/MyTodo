@@ -17,4 +17,7 @@ interface ToDoDAO {
 
     @Delete
     suspend fun delete(todo: ToDo)
+
+    @Query("select * from ToDo order by created desc")
+    fun getAll(): Flow<List<ToDo>>
 }

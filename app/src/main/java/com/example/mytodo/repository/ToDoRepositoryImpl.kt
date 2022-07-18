@@ -3,6 +3,7 @@ package com.example.mytodo.repository
 import com.example.mytodo.model.todo.ToDo
 import com.example.mytodo.model.todo.ToDoDAO
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -16,4 +17,6 @@ class ToDoRepositoryImpl @Inject constructor(
             dao.create(todo)
         }
     }
+
+    override fun getAll(): Flow<List<ToDo>> = dao.getAll()
 }
