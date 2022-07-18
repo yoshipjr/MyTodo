@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.mytodo.R
 import com.example.mytodo.databinding.CreateTodoFragmentBinding
 import com.example.mytodo.util.showLongSnackBar
@@ -24,7 +25,10 @@ class CreateToDoFragment: Fragment(R.layout.create_todo_fragment) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = CreateTodoFragmentBinding.inflate(inflater, container, false).root
+    ): View {
+        binding = CreateTodoFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,6 +37,7 @@ class CreateToDoFragment: Fragment(R.layout.create_todo_fragment) {
                 is CreateToDoViewModel.UiEvent.Error -> {
                     showLongSnackBar(uiEvent.error)
                 }
+                is CreateToDoViewModel.UiEvent.Done -> findNavController().popBackStack()
             }
         }
     }
