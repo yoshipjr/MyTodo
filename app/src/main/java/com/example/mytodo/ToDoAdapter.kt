@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodo.databinding.TodoItemBinding
 import com.example.mytodo.model.todo.ToDo
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 // アダプターで扱われるデータとviewholderを指定する
@@ -42,6 +40,7 @@ class ToDoAdapter: ListAdapter<ToDo, ToDoAdapter.TodoItemViewHolder>(callBacks) 
     }
 
     companion object {
+        // 差分があったときだけここが動いて、viewを変更してくれる
         private val callBacks = object : DiffUtil.ItemCallback<ToDo>() {
             // アイテムが同じかどうかを判別する
             override fun areItemsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
@@ -51,7 +50,6 @@ class ToDoAdapter: ListAdapter<ToDo, ToDoAdapter.TodoItemViewHolder>(callBacks) 
             override fun areContentsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
                 return oldItem.title == newItem.title && oldItem.created == newItem.created
             }
-
         }
     }
 }
