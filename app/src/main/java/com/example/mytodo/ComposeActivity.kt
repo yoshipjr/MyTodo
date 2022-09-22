@@ -8,6 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.mytodo.databinding.ActivityMain2Binding
+import com.example.mytodo.util.showLongSnackBar
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class ComposeActivity : AppCompatActivity() {
 
@@ -15,7 +18,6 @@ class ComposeActivity : AppCompatActivity() {
     private val binding: ActivityMain2Binding by lazy {
         ActivityMain2Binding.inflate(layoutInflater)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
