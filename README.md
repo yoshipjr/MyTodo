@@ -1,2 +1,2 @@
 # MyTodo
-適当にAndroid勉強に使うRepositoryです
+Android勉強に使うRepositoryです
