@@ -1,6 +1,7 @@
 package com.example.mytodo
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +14,8 @@ import java.util.*
 // アダプターで扱われるデータとviewholderを指定する
 class ToDoAdapter: ListAdapter<ToDo, ToDoAdapter.TodoItemViewHolder>(callBacks) {
 
+    lateinit var listener: OnItemClickListener
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = TodoItemBinding.inflate(inflater, parent, false)
@@ -24,6 +27,9 @@ class ToDoAdapter: ListAdapter<ToDo, ToDoAdapter.TodoItemViewHolder>(callBacks) 
         // アダプターが保持しているデータはgetitemで取得することができる
         val todo = getItem(position)
         holder.bindTo(todo)
+        holder.itemView.setOnClickListener {
+            listener.onItemClickListener(it, position, todo)
+        }
     }
 
     class TodoItemViewHolder(
@@ -37,6 +43,14 @@ class ToDoAdapter: ListAdapter<ToDo, ToDoAdapter.TodoItemViewHolder>(callBacks) 
                 Locale.JAPAN)
                 .format(Date(todo.created))
         }
+    }
+
+    interface OnItemClickListener{
+        fun onItemClickListener(view: View, position: Int, clickedTodo: ToDo)
+    }
+
+    fun setOnClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 
     companion object {
